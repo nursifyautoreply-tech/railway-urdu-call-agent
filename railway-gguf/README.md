@@ -9,7 +9,7 @@ Keep Railway's build root at the repository root and select this file with
 ## Required Railway variables
 
 - `HF_REPO`: `Talha44220/qwen-1.7-urdu`
-- `HF_FILE`: exact GGUF filename from the repository's Files and versions tab
+- `HF_FILE`: `qwen3_17b_urdu_Q4_K_M.gguf`
 - `HF_TOKEN`: Fine-grained, read-only Hugging Face token for the private repo
 
 ## Optional Railway variables

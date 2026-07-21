@@ -16,7 +16,7 @@ Select each Dockerfile with the Railway service variable
 ```text
 RAILWAY_DOCKERFILE_PATH=/railway-gguf/Dockerfile
 HF_REPO=Talha44220/qwen-1.7-urdu
-HF_FILE=exact-gguf-filename-from-files-and-versions.gguf
+HF_FILE=qwen3_17b_urdu_Q4_K_M.gguf
 HF_TOKEN=hf_read_only_token
 MODEL_ALIAS=qwen-urdu
 CTX_SIZE=2048
