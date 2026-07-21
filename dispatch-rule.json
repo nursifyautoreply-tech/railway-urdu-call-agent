@@ -1,0 +1,20 @@
+{
+  "name": "twilio-inbound-dynamic-room",
+  "trunk_ids": ["ST_REPLACE_WITH_LIVEKIT_INBOUND_TRUNK_ID"],
+  "rule": {
+    "dispatchRuleIndividual": {
+      "roomPrefix": "coldcall-"
+    }
+  },
+  "roomConfig": {
+    "agents": [
+      {
+        "agentName": "calling-agent"
+      }
+    ]
+  },
+  "metadata": {
+    "allowed_from": "+1234567890",
+    "notes": "Incoming Twilio webhooks are validated and caller ID is filtered in app webhook."
+  }
+}

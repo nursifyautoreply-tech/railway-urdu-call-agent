@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements-voice.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Download the same local Urdu Piper voice used by the existing agent.
+RUN python3 -m piper.download_voices ur_PK-fasih-medium \
+    --data-dir /app/voices --download-dir /app/voices
+
+COPY agent.py .
+COPY piper_tts.py .
+COPY latency_metrics.py .
+
+# OpenAI-compatible llama.cpp adapter for the Railway-hosted GGUF model.
+COPY railway-gguf/voice-agent/gguf_llm.py ./gguf_llm.py
+
+ENV PYTHONUNBUFFERED=1
+ENV PIPER_MODEL_PATH=/app/voices/ur_PK-fasih-medium.onnx
+
+CMD ["python", "agent.py", "start"]

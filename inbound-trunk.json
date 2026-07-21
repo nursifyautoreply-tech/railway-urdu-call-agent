@@ -1,0 +1,7 @@
+{
+  "trunk": {
+    "name": "Twilio Inbound Trunk for LiveKit",
+    "numbers": ["+1234567890"],
+    "krisp_enabled": true
+  }
+}
