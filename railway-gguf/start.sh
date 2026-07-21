@@ -3,6 +3,7 @@ set -eu
 
 : "${HF_REPO:?HF_REPO is required (example: username/model-repo)}"
 : "${HF_FILE:?HF_FILE is required (example: model-Q4_K_M.gguf)}"
+: "${HF_TOKEN:?HF_TOKEN is required for the private Hugging Face repository}"
 
 exec /app/llama-server \
   --hf-repo "$HF_REPO" \
@@ -14,4 +15,3 @@ exec /app/llama-server \
   --threads "${THREADS:-4}" \
   --parallel "${PARALLEL:-1}" \
   --jinja
-
