@@ -8,6 +8,7 @@ set -eu
 exec /app/llama-server \
   --hf-repo "$HF_REPO" \
   --hf-file "$HF_FILE" \
+  --hf-token "$HF_TOKEN" \
   --alias "${MODEL_ALIAS:-qwen-urdu}" \
   --host 0.0.0.0 \
   --port "${PORT:-8080}" \
