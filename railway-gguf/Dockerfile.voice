@@ -5,9 +5,13 @@ WORKDIR /app
 COPY requirements-voice.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Download the same local Urdu Piper voice used by the existing agent.
-RUN python3 -m piper.download_voices ur_PK-fasih-medium \
-    --data-dir /app/voices --download-dir /app/voices
+# Download the selected public Urdu Piper voice from Hugging Face. Piper needs
+# both the ONNX model and its adjacent .onnx.json configuration file.
+RUN pip install --no-cache-dir "huggingface_hub>=0.30,<2" && \
+    hf download IhorShevchuk/piper-voice-ur-fasih \
+      ur_PK-fasih-medium-model.onnx \
+      ur_PK-fasih-medium-model.onnx.json \
+      --local-dir /app/voices
 
 COPY agent.py .
 COPY piper_tts.py .
@@ -17,6 +21,6 @@ COPY latency_metrics.py .
 COPY railway-gguf/voice-agent/gguf_llm.py ./gguf_llm.py
 
 ENV PYTHONUNBUFFERED=1
-ENV PIPER_MODEL_PATH=/app/voices/ur_PK-fasih-medium.onnx
+ENV PIPER_MODEL_PATH=/app/voices/ur_PK-fasih-medium-model.onnx
 
 CMD ["python", "agent.py", "start"]

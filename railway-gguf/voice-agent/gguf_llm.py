@@ -26,7 +26,10 @@ class GGUFLLM(llm.LLM):
 
     def __init__(self, base_url: str, timeout: float = 180.0) -> None:
         super().__init__()
-        self._base_url = base_url.rstrip("/")
+        normalized_url = base_url.strip().rstrip("/")
+        if not normalized_url.startswith(("http://", "https://")):
+            normalized_url = f"http://{normalized_url}"
+        self._base_url = normalized_url
         self._timeout = timeout
         self._model = os.getenv("LLM_MODEL", "qwen-urdu")
         self._api_key = os.getenv("LLM_API_KEY", "")

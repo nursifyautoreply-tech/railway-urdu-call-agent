@@ -37,7 +37,9 @@ DASHBOARD_WEBHOOK_URL = os.getenv(
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "").rstrip("/")
 
 # Local Piper voice model baked into the voice-agent image.
-PIPER_MODEL_PATH = os.getenv("PIPER_MODEL_PATH", "/app/voices/ur_PK-fasih-medium.onnx")
+PIPER_MODEL_PATH = os.getenv(
+    "PIPER_MODEL_PATH", "/app/voices/ur_PK-fasih-medium-model.onnx"
+)
 
 # Groq's llama-3.3-70b-versatile occasionally leaked tool calls as literal text
 # (e.g. <function=submit_call_summary>{...}</function>) instead of using the
